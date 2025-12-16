@@ -46,7 +46,7 @@ Figure 1: Comparison of Top Terms: Stemming vs Lemmatization
 
 This distinction highlights the benefit of lemmatization: while stemming treats all forms as identical, lemmatization preserves important differences—such as between run and runner, which have distinct meanings (Piduguralla, 2023). To evaluate the effectiveness of both approaches, a comparative analysis was performed and summarized in Table 2. The results demonstrate that lemmatization produces more accurate, meaningful, and human-readable outputs, making it more suitable for sentiment analysis in this context.
 
-###### The output from normalization by Stemming and Lemmatizer 
+Table 1: The output from normalization by Stemming and Lemmatizer
 ![lemma_stemming](https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/Lemma%20vs.%20Stemming.png)
 
 As expected, before applying any cleaning or tokenization, the total raw word count was 499,669. After the cleaning and tokenization process, the word count was significantly reduced — down
@@ -85,9 +85,68 @@ As a marketing researcher, I used LDA to explore the broader context in which pe
 
 The bigram analysis reveals a strong focus on marathon training, physical health, and mental well- being in Reddit conversations. To capture more context and emotional tone, a trigram analysis was also performed. While much of the discussion is positive and goal-oriented, trigrams like "feel like shit" and "mental health issue" show that users also express the struggles of training, including fatigue and emotional challenges. The presence of running-related terms and brands highlights a shared connection within the running community.
 
-**The number of common bi-grams and tri-grams.**
-
+Table 2: The number of common bi-grams and tri-grams.
 ![common_bitri](https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/Common%20bi(tri)grams.png)
+
+##### Sentiment Analysis
+
+**5.2.1 Word Counting Sentiment Analysis**
+
+From the word count analysis, we identified 22,560 positive words, 14,947 negative words, and 210,884 neutral words. Figure 2 presents a word cloud showcasing the most common positive, negative, and neutral terms that appeared in the comments. However, the words captured in this analysis are quite generic, making it challenging to fully understand the underlying context or sentiment of the discussions. This highlights the limitation of the word count approach in capturing the nuances of language, especially in a diverse and informal setting like Reddit comments.
+
+![pos_neg_neu)[https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/pos%3Aneg%3Aneu.png]
+Figure 2: Word Cloud represents the common positive, negative and neutral words
+
+Moreover, another significant limitation of the word count approach is its inability to capture the context, negation, sarcasm, and emotional intensity behind the words. This often leads to misclassification of the overall tone of a message. For example, both "GREAT" and "okay" might be counted as positive words with the same weight (+1), despite "GREAT" expressing a much stronger sentiment. The method fails to differentiate between varying intensities or emotional strengths, which can result in an inaccurate assessment of the tone In this case, the sentiment of the comment might be calculated as 0 (positive words minus negative words), yet, in reality, the comment carries a distinctly positive tone.
+
+**5.2.2 Vader Sentiment Analysis**
+
+The overall sentiment score, based on the Vader analysis, is 0.4, indicating a predominantly positive sentiment across the dataset. Below are the top 3 positive sentiments derived from the analysis. These excerpts primarily consist of comments from Reddit users, and the sentiments reflect encouragement and motivation for other runners.
+
+![vader1](https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/Vader1.png)
+
+The most negative sentiments, as identified by Vader compound scores, reflect deeply personal and emotionally charged experiences shared by runners. These include coping with disappointing race outcomes, enduring physical pain, recovering from unexpected injuries unrelated to running, and dealing with traumatic incidents such as dog attacks on trails. Interestingly, amidst these challenges, some individuals also shared how their setbacks led them to explore new interests—such as cycling— highlighting a shift in focus and resilience in adapting to changing circumstances.
+
+![vader2](https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/Vader2.png)
+
+In figure 3A, the word count method shows extreme positive sentiment spikes, while Vader remains more stable. Early data (pre-2014) is missing in the monthly trend, likely due to limited Reddit activity or topic relevance. However, figure 3B shows overall positive yearly sentiment from 2014 to 2016. A dip into negative sentiment appears only in the word count method around 2020–2022, suggesting it may be more sensitive to changes in language tone.
+
+![sentiment](https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/Sentiment.png)
+Figure 3: Monthly Sentiment Trends (Figure 3A) and Yearly Sentiment Trend (Figure 3B)
+
+**5.3 Topic Summary**
+
+During the initial phase of topic modeling, I overlooked the importance of removing website links from the dataset. As a result, the generated word clouds prominently featured irrelevant tokens like "http" and "com," which distorted the topic interpretations. I later realized that cleaning the data to remove common URL components such as "http," "www," and "com" was essential, as many comments included links to external websites. Once the data was properly cleaned, I proceeded to determine the optimal number of topics for the LDA model. My first attempt with 3 topics yielded vague and uninformative results, such as a topic dominated by generic words like “feel” and “like”, which lacked actionable insights. Therefore, I manually experimented with different numbers of topics and assessed the coherence of the outputs. Eventually, I settled on using 9 topics, displaying the top 15 words per topic, and limiting the vocabulary size to 2000 features for clearer interpretations.
+
+Table 4: The summarized conclusions for each topic.
+![topic_summary](https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/Topic_summary.png)
+
+![wordCloud](https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/TopicModelling.png)
+Figure 4: Word Cloud represents topic modelling
+
+## 6. Conclusion
+
+This report explored how running relates to mental well-being and what motivates people to run. The findings from sentiment analysis indicate that, overall, people express a positive sentiment toward running. However, there are certain months where negative sentiments are more prominent. A closer look into the top posts during those periods reveals that negative experiences, such as traumatic events like dog attacks on trails, or a shift in interest toward other activities like cycling may contribute to these sentiments. Topic modelling further supports the richness of online discussions surrounding running. A variety of themes emerged, including marathons, running clubs, music, and deeply personal topics such as parenting, pregnancy, postpartum experiences, and even health challenges like cancer. These discussions suggest that running is often intertwined with significant life events and transformations. N-gram analysis also showed that Reddit is a space where people share their emotions, encourage others, and reflect on their running journeys. This community-driven engagement highlights how running is not only a physical activity but also a powerful source of emotional connection and support.
+
+
+# 7. References
+
+[1] C. Gorale, "Applying Lowercase Before and After Tokenization in NLP", Medium.com, 2024. [Online]. Available: https://cgorale111.medium.com/applying-lowercase-before-and-after- tokenization-in-nlp- 67f50462b06f#:~:text=Consistency%3A%20Applying%20lowercase%20conversion%20before,maki ng%20the%20tokens%20more%20uniform. [Accessed: 10- April- 2025].
+
+[2] Displayr, “How to Count the Number of Positive and Negative Terms Use to Calculate Sentiment Scores,” 2025. [Online]. Available: https://help.displayr.com/hc/en-us/articles/7163382749967-How- to-Count-the-Number-of-Positive-and-Negative-Terms-Use-to-Calculate-Sentiment- Scores#:~:text=Sentiment%20analysis%20is%20a%20way,a%20negative%20to%20positive%20scal e). [Accessed 15- April- 2025].
+
+[3] J. Chan, " COSC2671 | Social Media and Network Analytics, Lab Notes (Internal) [Online] [Private]. [Accessed: 15- Aug- 2019].
+
+[4] J. Domaleski, "Basic Sentiment Analysis Using R with VADER", Medium.com, 2024. [Online]. Available: https://blog.marketingdatascience.ai/basic-sentiment-analysis-using-r-with-vader- 4eecb738566f. [Accessed: 16- April- 2025].
+
+[5] Linkedin, “What are the most effective ways to collect data from Reddit?”, 2024. [Online]. Available: https://www.linkedin.com/advice/1/what-most-effective-ways-collect-data-from-reddit- ybgtf. [Accessed 15- April- 2025].
+
+[6] P. Datta, "Analyzing Text Data with Topic Modeling: Latent Dirichlet Allocation (LDA) Explained", Medium.com, 2024. [Online]. Available: https://medium.com/@pinakdatta/understanding-lda-unveiling-hidden-topics-in-text-data- 9bbbd25ae162. [Accessed: 16- April- 2025].
+
+[7] S. Fathima, "Explore NGram Analysis to Understand Language Patterns", MarkovML.com, 2024. [Online]. Available: https://www.markovml.com/blog/ngram- analysis#:~:text=N%2Dgram%20in%20Natural%20Language,comes%20next%20in%20a%20sentenc e. [Accessed: 15- April- 2025].
+
+[8] S. Piduguralla, “Understanding the Difference Between Stemming and Lemmatization”, Medium.com, 2023. [Online]. Available: https://medium.com/@tejaswaroop2310/understanding-the- difference-between-stemming-and-lemmatization-dbfdfed98df0. [Accessed: 10- April- 2025].
+
 
 
 
