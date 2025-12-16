@@ -1,17 +1,17 @@
-# Reddit Data Mining for Running and Mental Health Insights
+# 🏃🏻‍♀️‍➡️💪🏽 Reddit Data Mining for Running and Mental Health Insights
 
-## 1. Introduction
+## ✨ 1. Introduction
 
 In the era of social media, we often find ourselves consumed by the lives of others, constantly comparing their highlights with our reality. This habit can take a toll on our mental health. However, like every coin has two sides, social media can also be a source of inspiration. For me personally, it became the motivation to start exercising and take better care of my body. I began running as a way to improve my mental health, and I can confidently say that running has truly changed my life.
 
 In this paper, I imagine myself as part of the marketing team for a non-profit running organization, working to promote a campaign that inspires more people to run. One of the key objectives of this project is to understand how running affects people’s mental well-being and what motivates them to start or continue running. To explore this, I analyse Reddit posts that discuss running and mental health. I also examine the broader context in which people talk about running on Reddit. Additionally, I look at the sentiments expressed, both positive and negative, as a way to understand strong opinions and emotional connections people have with running.
 
-## 2. Data Collection
+## 💻 2. Data Collection
 
 The data was collected from Reddit using its official API through PRAW (Python Reddit API Wrapper), a Python library that provides easy access to Reddit’s data. To focus on discussions specifically related to running and mental health, I selected seven relevant subreddits: r/running, r/BeginnersRunning,r/
 beginnerrunning, r/Marathon_Training, r/AdvancedRunning, r/XXRunning, and r/firstmarathon. I used the some keywords, such as "mental", “therapy” and “burnout”, to narrow down the scope of the search, avoiding unrelated running topics and ensuring relevance to mental health. The plan was to retrieve up to 500 posts from each subreddit, totalling 3,500 posts. However, only 925 posts were successfully saved into the final JSON file. This discrepancy is likely due to the fact that not all subreddits had 500 posts that matched the keyword criteria within the available Reddit archive, especially for smaller or less active subreddits. Additionally, PRAW returns only a subset of all possible results due to Reddit’s search constraints and API limits, which can also contribute to the lower number of retrieved posts (LinkedIn, 2024).
 
-## 3. Data Pre-Processing and Exploration 
+## 3. 📖 Data Pre-Processing and Exploration 
 
 **3.1 Conversion to lower case**
 
@@ -52,7 +52,7 @@ Table 1: The output from normalization by Stemming and Lemmatizer
 As expected, before applying any cleaning or tokenization, the total raw word count was 499,669. After the cleaning and tokenization process, the word count was significantly reduced — down
 to 243,693 using stemming and 248,501 using lemmatization. This substantial reduction highlights how much unnecessary or redundant content (such as punctuation, stopwords, or repeated word forms) was present in the original text, and demonstrates the importance of preprocessing for meaningful analysis. For the purpose of this report, I have chosen to proceed with the lemmatization approach, as it retains context-aware word forms and provides more accurate representations of the original content.
 
-## 4. Analysis Approach
+## 🔎 4. Analysis Approach
 
 **4.1 N-grams**
 
@@ -79,7 +79,7 @@ Topic modeling was performed using Latent Dirichlet Allocation (LDA), a generati
 
 As a marketing researcher, I used LDA to explore the broader context in which people discuss running online. This approach allows me to identify hidden themes and conversations beyond surface- level keywords, offering valuable insights into consumer interests and behaviors. By analyzing how topics are distributed across time, LDA helps uncover emerging trends and shifts in public sentiment. These insights are instrumental in shaping targeted marketing campaigns and ensuring that promotional strategies align with evolving interests within the running community.
 
-## 5. Analysis
+## 📌 5. Analysis
 
 **5.1 N-grams Analysis**
 
@@ -94,7 +94,7 @@ Table 2: The number of common bi-grams and tri-grams.
 
 From the word count analysis, we identified 22,560 positive words, 14,947 negative words, and 210,884 neutral words. Figure 2 presents a word cloud showcasing the most common positive, negative, and neutral terms that appeared in the comments. However, the words captured in this analysis are quite generic, making it challenging to fully understand the underlying context or sentiment of the discussions. This highlights the limitation of the word count approach in capturing the nuances of language, especially in a diverse and informal setting like Reddit comments.
 
-![pos_neg_neu][https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/pos%3Aneg%3Aneu.png]
+![pos_neg_neu](https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/pos%3Aneg%3Aneu.png)
 Figure 2: Word Cloud represents the common positive, negative and neutral words
 
 Moreover, another significant limitation of the word count approach is its inability to capture the context, negation, sarcasm, and emotional intensity behind the words. This often leads to misclassification of the overall tone of a message. For example, both "GREAT" and "okay" might be counted as positive words with the same weight (+1), despite "GREAT" expressing a much stronger sentiment. The method fails to differentiate between varying intensities or emotional strengths, which can result in an inaccurate assessment of the tone In this case, the sentiment of the comment might be calculated as 0 (positive words minus negative words), yet, in reality, the comment carries a distinctly positive tone.
@@ -124,12 +124,12 @@ Table 4: The summarized conclusions for each topic.
 ![wordCloud](https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/TopicModelling.png)
 Figure 4: Word Cloud represents topic modelling
 
-## 6. Conclusion
+## 📝 6. Conclusion
 
 This report explored how running relates to mental well-being and what motivates people to run. The findings from sentiment analysis indicate that, overall, people express a positive sentiment toward running. However, there are certain months where negative sentiments are more prominent. A closer look into the top posts during those periods reveals that negative experiences, such as traumatic events like dog attacks on trails, or a shift in interest toward other activities like cycling may contribute to these sentiments. Topic modelling further supports the richness of online discussions surrounding running. A variety of themes emerged, including marathons, running clubs, music, and deeply personal topics such as parenting, pregnancy, postpartum experiences, and even health challenges like cancer. These discussions suggest that running is often intertwined with significant life events and transformations. N-gram analysis also showed that Reddit is a space where people share their emotions, encourage others, and reflect on their running journeys. This community-driven engagement highlights how running is not only a physical activity but also a powerful source of emotional connection and support.
 
 
-# 7. References
+## 🗞️ 7. References
 
 [1] C. Gorale, "Applying Lowercase Before and After Tokenization in NLP", Medium.com, 2024. [Online]. Available: https://cgorale111.medium.com/applying-lowercase-before-and-after- tokenization-in-nlp- 67f50462b06f#:~:text=Consistency%3A%20Applying%20lowercase%20conversion%20before,maki ng%20the%20tokens%20more%20uniform. [Accessed: 10- April- 2025].
 
