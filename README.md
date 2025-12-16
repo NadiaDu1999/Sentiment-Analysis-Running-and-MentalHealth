@@ -94,7 +94,7 @@ Table 2: The number of common bi-grams and tri-grams.
 
 From the word count analysis, we identified 22,560 positive words, 14,947 negative words, and 210,884 neutral words. Figure 2 presents a word cloud showcasing the most common positive, negative, and neutral terms that appeared in the comments. However, the words captured in this analysis are quite generic, making it challenging to fully understand the underlying context or sentiment of the discussions. This highlights the limitation of the word count approach in capturing the nuances of language, especially in a diverse and informal setting like Reddit comments.
 
-![pos_neg_neu)[https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/pos%3Aneg%3Aneu.png]
+![pos_neg_neu][https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/pos%3Aneg%3Aneu.png]
 Figure 2: Word Cloud represents the common positive, negative and neutral words
 
 Moreover, another significant limitation of the word count approach is its inability to capture the context, negation, sarcasm, and emotional intensity behind the words. This often leads to misclassification of the overall tone of a message. For example, both "GREAT" and "okay" might be counted as positive words with the same weight (+1), despite "GREAT" expressing a much stronger sentiment. The method fails to differentiate between varying intensities or emotional strengths, which can result in an inaccurate assessment of the tone In this case, the sentiment of the comment might be calculated as 0 (positive words minus negative words), yet, in reality, the comment carries a distinctly positive tone.
