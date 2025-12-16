@@ -1,4 +1,4 @@
-# Running Trend Analysis on Reddit
+# Reddit Data Mining for Running and Mental Health Insights
 
 ## 1. Introduction
 
@@ -13,24 +13,24 @@ beginnerrunning, r/Marathon_Training, r/AdvancedRunning, r/XXRunning, and r/firs
 
 ## 3. Data Pre-Processing and Exploration 
 
-##### 3.1 Conversion to lower case
+**3.1 Conversion to lower case**
 
 To maintain uniformity and reduce case-related variability in the text data, all text was converted to lowercase (Gorale, 2024). This normalization step ensures that words like "Running" and "running" are treated identically during analysis.
 
-##### 3.2 Noise reduction
+**3.2 Noise reduction**
 To reduce textual noise, punctuation marks and special characters such as . , ; : ? ! " ' - _ ( ) [ ] {
 } were removed. This was done using Python’s string.punctuation, which provides a convenient list of common punctuation symbols to filter out irrelevant characters from the data.
 
-##### 3.3 Tokenization
+**3.3 Tokenization**
 
 Tokenization is the process of splitting text into individual elements or tokens (usually words). For instance, the sentence "I love running" becomes ["I", "love", "running"]. Instead of the
 standard word_tokenize() function, I used NLTK’s TweetTokenizer, which is better suited for informal or social media text. It handles contractions like "I'm" correctly by tokenizing it as ["I", "'m"], preserving meaning in casual language formats. However, if we skip the noise reduction process—which includes steps like removing punctuation and special characters—tokens such as commas and quotation marks (e.g., ",", "“", etc.) will still appear in the list, leading to less meaningful analysis. The example below illustrates this difference clearly.
 
-##### 3.4 Stop word removal
+**3.4 Stop word removal**
 
 Commonly used words such as "the", "is", and "and" contribute little to semantic analysis and were removed to reduce noise. The stopword list was based on NLTK’s default set, with additional domain- specific terms like "rt", "via", "...", "’", "http", and "https" also excluded. These additions are particularly useful for cleaning Reddit posts, where such tokens are frequent but not meaningful.
 
-##### 3.5 Normalization
+**3.5 Normalization**
 
 To further refine the text, lemmatization was applied to reduce words to their base or dictionary forms. Unlike stemming, which may produce non-standard or partial roots, lemmatization ensures that the output is meaningful and context-aware. For example:
 
@@ -54,26 +54,26 @@ to 243,693 using stemming and 248,501 using lemmatization. This substantial redu
 
 ## 4. Analysis Approach
 
-##### 4.1 N-grams
+**4.1 N-grams**
 
 In this report, I used N-gram language modeling with NLTK to explore the common themes in discussions around running and mental health. I generated both bigrams (2-word
 combinations) and trigrams (3-word combinations) to capture the most frequent word patterns and phrases. This approach helped me find not just the important words, but also how people often use these words together in conversations (Fathima, 2024). It gave me a clearer picture of what people are really talking about when it comes to running and mental health.
 
-##### 4.2 Sentiment Analysis
+**4.2 Sentiment Analysis**
 
 In this process, for word counting method, stopwords and punctuation are removed to clean the text, similar to the earlier data preprocessing steps. The text is then tokenized, and each word is checked against a list of known positive and negative words. However, Vader method is designed to work well on raw social media text, emojis, slang, and punctuation which often carry strong emotional cues, so cleaning, lowercasing, and lemmatizing are not applied in Vader method. There are two approaches of sentiment analysis performed in this report.
 
-**4.2.1 Word Counting Method**
+##### 4.2.1 Word Counting Method
 
 Word count-based analysis helps measure the overall emotion or tone in written content. It’s especially useful in survey analysis to understand how people feel about a particular topic (Displayr, 2025). This method assigns each text a sentiment score based on how many words match those in a predefined sentiment dictionary. The analysis provides four key scores – proportion of negative, neutral and positive sentiment in the text and the compound score that serves as the final indicator of sentiment, balancing all three proportions to reflect the general mood of the content.
 
-**4.2.2 Vader Method**
+##### 4.2.2 Vader Method
 
 Vader offers a more nuanced approach to measuring the emotional tone of text compared to traditional word-count methods. Instead of simply classifying words as positive or negative, Vader assesses the intensity of emotions expressed in the sentence. It does so by applying various rules to account for factors such as Intensifiers, such as "really", "very", which amplify the sentiment of surrounding words, Capitalization, which conveys a stronger emotional weight, and Punctuation, particularly exclamation marks (!), which further intensify the sentiment (Domaleski, 2024).
 
 This report will perform sentiment analysis using two methods: word counting and Vader approach. The purpose is to compare the results from both methods to provide a clearer understanding of sentiment trends. However, more focus will be placed on the Vader analysis due to its higher efficiency and accuracy in processing text data.
 
-##### 4.3 Topic Modelling
+**4.3 Topic Modelling**
 
 Topic modeling was performed using Latent Dirichlet Allocation (LDA), a generative probabilistic model. LDA assumes that each document is composed of a combination of various topics, and that each word in the document is generated from one of these underlying topics. The objective of LDA is to uncover the hidden topic structure by estimating the distribution of topics within documents and the distribution of words within those topics, based on the observed text data (Datta, 2024).
 
@@ -81,16 +81,16 @@ As a marketing researcher, I used LDA to explore the broader context in which pe
 
 ## 5. Analysis
 
-##### 5.1 N-grams Analysis
+**5.1 N-grams Analysis**
 
 The bigram analysis reveals a strong focus on marathon training, physical health, and mental well- being in Reddit conversations. To capture more context and emotional tone, a trigram analysis was also performed. While much of the discussion is positive and goal-oriented, trigrams like "feel like shit" and "mental health issue" show that users also express the struggles of training, including fatigue and emotional challenges. The presence of running-related terms and brands highlights a shared connection within the running community.
 
 Table 2: The number of common bi-grams and tri-grams.
 ![common_bitri](https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/Common%20bi(tri)grams.png)
 
-##### Sentiment Analysis
+**5.2 Sentiment Analysis**
 
-**5.2.1 Word Counting Sentiment Analysis**
+##### 5.2.1 Word Counting Sentiment Analysis
 
 From the word count analysis, we identified 22,560 positive words, 14,947 negative words, and 210,884 neutral words. Figure 2 presents a word cloud showcasing the most common positive, negative, and neutral terms that appeared in the comments. However, the words captured in this analysis are quite generic, making it challenging to fully understand the underlying context or sentiment of the discussions. This highlights the limitation of the word count approach in capturing the nuances of language, especially in a diverse and informal setting like Reddit comments.
 
@@ -99,7 +99,7 @@ Figure 2: Word Cloud represents the common positive, negative and neutral words
 
 Moreover, another significant limitation of the word count approach is its inability to capture the context, negation, sarcasm, and emotional intensity behind the words. This often leads to misclassification of the overall tone of a message. For example, both "GREAT" and "okay" might be counted as positive words with the same weight (+1), despite "GREAT" expressing a much stronger sentiment. The method fails to differentiate between varying intensities or emotional strengths, which can result in an inaccurate assessment of the tone In this case, the sentiment of the comment might be calculated as 0 (positive words minus negative words), yet, in reality, the comment carries a distinctly positive tone.
 
-**5.2.2 Vader Sentiment Analysis**
+##### 5.2.2 Vader Sentiment Analysis
 
 The overall sentiment score, based on the Vader analysis, is 0.4, indicating a predominantly positive sentiment across the dataset. Below are the top 3 positive sentiments derived from the analysis. These excerpts primarily consist of comments from Reddit users, and the sentiments reflect encouragement and motivation for other runners.
 
