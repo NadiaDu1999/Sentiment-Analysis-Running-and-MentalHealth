@@ -1,5 +1,7 @@
 # 🏃🏻‍♀️‍➡️💪🏽 Reddit Data Mining for Running and Mental Health Insights
 
+![cover](https://github.com/NadiaDu1999/Sentiment-Analysis-Running-and-MentalHealth/blob/main/cover.png)
+
 ## ✨ 1. Introduction
 
 In the era of social media, we often find ourselves consumed by the lives of others, constantly comparing their highlights with our reality. This habit can take a toll on our mental health. However, like every coin has two sides, social media can also be a source of inspiration. For me personally, it became the motivation to start exercising and take better care of my body. I began running as a way to improve my mental health, and I can confidently say that running has truly changed my life.
